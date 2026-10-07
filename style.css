@@ -45,6 +45,7 @@ body {
   font-size: 28px;
   cursor: pointer;
   transition: 0.2s ease;
+  font-family: 'Times New Roman', Times, serif;
 }
 .letra:hover {
   border-color: white;
@@ -139,6 +140,7 @@ body {
       cursor: pointer;
       user-select: none;
       transition: background-color 0.15s ease, transform 0.05s ease;
+      
     }
 
     /* Efeito ao passar o mouse e ao clicar */
