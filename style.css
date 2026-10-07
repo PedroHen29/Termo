@@ -45,7 +45,6 @@ body {
   font-size: 28px;
   cursor: pointer;
   transition: 0.2s ease;
-  font-family: 'Times New Roman', Times, serif;
 }
 .letra:hover {
   border-color: white;
