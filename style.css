@@ -18,7 +18,7 @@ body {
 .titulo {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: #f8f8f8;
-  margin-bottom: 70px;
+  margin-bottom: 40px;
   font-size: 32px;
   letter-spacing: 2px;
 }
@@ -104,3 +104,55 @@ body {
     transform: scale(1) rotate(0);
   }
 }
+
+.teclado-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+      max-width: 500px;
+      padding: 10px;
+    }
+
+    /* Linhas de teclas */
+    .linha-teclado {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+    }
+
+    /* Todas as teclas utilizam a mesma classe principal: .tecla-teclado */
+    .tecla-teclado {
+      background-color: #2a2724; /* Cor escura das teclas */
+      color: #ffffff;            /* Texto branco como no título da imagem */
+      border: 1px solid #3f3b37; /* Borda sutil idêntica à da grade */
+      border-radius: 6px;        /* Bordas arredondadas */
+      height: 55px;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.15s ease, transform 0.05s ease;
+    }
+
+    /* Efeito ao passar o mouse e ao clicar */
+    .tecla-teclado:hover {
+      background-color: #383430;
+    }
+
+    .tecla-teclado:active {
+      transform: scale(0.96);
+      background-color: #423e39;
+    }
+
+    /* Modificador apenas para ajuste de largura de teclas especiais */
+    .tecla-teclado.especial {
+      flex: 1.5;
+      font-size: 0.85rem;
+    }
