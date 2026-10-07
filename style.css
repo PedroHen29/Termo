@@ -156,3 +156,9 @@ body {
       flex: 1.5;
       font-size: 0.85rem;
     }
+
+footer{
+  width: 100%;
+  background-color: black;
+  color: white;
+}
