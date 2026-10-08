@@ -212,78 +212,105 @@ const palavras = [
   "viver",
   "volta",
 ];
+// --- Estado do Jogo ---
 let posicao = 0;
 let palavra = "";
 let palavraCorreta = "";
-let tentativa = 0;
+
+// Elementos do DOM
+const letras = document.querySelectorAll(".letra");
+
+// --- Funções Principais ---
+
 function buscarPalavra() {
   const indice = Math.floor(Math.random() * palavras.length);
-  palavraCorreta = palavras[indice];
-  palavraCorreta.toUpperCase();
+  palavraCorreta = palavras[indice].toUpperCase();
 }
+
+function apagarLetra() {
+  if (palavra.length === 0) return;
+
+  posicao--;
+  palavra = palavra.slice(0, -1);
+  letras[posicao].textContent = "";
+}
+
+function adicionarLetra(tecla) {
+  if (posicao >= 35 || palavra.length >= 5) return;
+
+  const letra = tecla.toUpperCase();
+  letras[posicao].textContent = letra;
+  palavra += letra;
+  posicao++;
+}
+
+function validarTentativa() {
+  if (palavra.length < 5) {
+    alert("Palavra inválida");
+    return;
+  }
+
+  const inicioLinha = posicao - 5;
+  const acertouTudo = palavra === palavraCorreta;
+
+  // Animação e coloração das letras
+  for (let i = inicioLinha; i < inicioLinha + 5; i++) {
+    const indiceLetra = i - inicioLinha;
+    const letraDigitada = letras[i].textContent;
+
+    setTimeout(() => {
+      if (letraDigitada === palavraCorreta[indiceLetra]) {
+        letras[i].classList.add("acertou");
+      } else if (palavraCorreta.includes(letraDigitada)) {
+        letras[i].classList.add("amarelo");
+      } else {
+        letras[i].classList.add("errou");
+      }
+    }, indiceLetra * 400);
+  }
+
+  if (acertouTudo) {
+    for(let i = inicioLinha; i < inicioLinha+5; i++){
+      const indiceLetra = i - inicioLinha;
+      setTimeout(() => {
+        letras[i].classList.add("acertou")
+      }, indiceLetra* 400)
+      reiniciarAposVitoria()
+    }
+  } else {
+    palavra = "";
+    tentativa++;
+  }
+}
+
+function reiniciarAposVitoria() {
+  setTimeout(() => {
+    palavra = "";
+    posicao = 0;
+    tentativa = 0;
+
+    letras.forEach((tecla) => {
+      tecla.classList.remove("acertou", "errou", "amarelo");
+      tecla.textContent = "";
+    });
+
+    buscarPalavra();
+  }, 2500);
+}
+
+// --- Inicialização ---
 buscarPalavra();
 
+// --- Event Listeners ---
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Backspace" && palavra.length > 0) {
-    posicao--;
-    const letras = document.querySelectorAll(".letra");
-    const tecla = letras[posicao];
-    palavra = palavra.slice(0, palavra.length - 1);
-    tecla.textContent = "";
-  }
-  if (/^[a-z]$/i.test(event.key) && posicao < 35 && palavra.length < 5) {
-    const letras = document.querySelectorAll(".letra");
-    const tecla = letras[posicao];
-    tecla.textContent = event.key;
-    palavra += event.key;
-    posicao++;
-  }
-  if (event.key === "Enter" && palavra.length < 5) {
-    alert("Palavra invaida");
-  } else if (
-    event.key === "Enter" &&
-    palavra.length === 5 &&
-    palavra === palavraCorreta
-  ) {
-    let inicioLinha = posicao - 5;
-    const letras = document.querySelectorAll(".letra");
-    for (let i = inicioLinha; i < inicioLinha + 5; i++) {
-      let indiceLetra = i - inicioLinha;
-      setTimeout(() => {
-        letras[i].classList.add("acertou");
-      }, indiceLetra * 400);
-    }
-    setTimeout(() => {
-      palavra = "";
-      posicao = 200;
-      for (let i = 0; i < letras.length; i++) {
-        letras[i].classList.remove("acertou");
-        letras[i].classList.remove("errou");
-        letras[i].classList.remove("amarelo");
-        letras[i].textContent = "";
-      }
-    }, 2500);
-  } else if (
-    event.key === "Enter" &&
-    palavra.length === 5 &&
-    palavra !== palavraCorreta
-  ) {
-    let inicioLinha = posicao - 5;
-    const letras = document.querySelectorAll(".letra");
-    for (let i = inicioLinha; i < inicioLinha + 5; i++) {
-      let indiceLetra = i - inicioLinha; // Sempre varia de 0 a 4
-      let letraDigitada = letras[i].textContent;
-      setTimeout(() => {
-        if (letraDigitada === palavraCorreta[indiceLetra]) {
-          letras[i].classList.add("acertou");
-        } else if (palavraCorreta.includes(letraDigitada)) {
-          letras[i].classList.add("amarelo");
-        } else {
-          letras[i].classList.add("errou");
-        }
-      }, indiceLetra * 400);
-    }
-    palavra = "";
+  const tecla = event.key;
+
+  if (tecla === "Backspace") {
+    apagarLetra();
+  } else if (/^[a-z]$/i.test(tecla)) {
+    adicionarLetra(tecla);
+  } else if (tecla === "Enter") {
+    validarTentativa();
   }
 });
 
