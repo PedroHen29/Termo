@@ -219,7 +219,7 @@ let tentativa = 0;
 function buscarPalavra() {
   const indice = Math.floor(Math.random() * palavras.length);
   palavraCorreta = palavras[indice];
-  palavraCorreta .toUpperCase()
+  palavraCorreta.toUpperCase();
 }
 buscarPalavra();
 
@@ -328,6 +328,7 @@ function processarEntrada(tecla) {
     } else {
       // Caso a palavra esteja incorreta
       for (let i = inicioLinha; i < inicioLinha + 5; i++) {
+        const tecla = document.querySelectorAll(".tecla-teclado");
         let indiceLetra = i - inicioLinha;
         let letraDigitada = letras[i].textContent;
 
@@ -349,7 +350,7 @@ function processarEntrada(tecla) {
 
   // 3. Tratar a digitação de letras (máximo de 35 espaços e apenas 5 por linha/palavra)
   if (tecla.length === 1 && palavra.length < 5 && posicao < 35) {
-    const letraFormatada = tecla.toUpperCase();
+    const letraFormatada = tecla.toLowerCase();
 
     // Filtra para garantir que apenas letras sejam digitadas
     if (/^[a-z]$/i.test(letraFormatada)) {
