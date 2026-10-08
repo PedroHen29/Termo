@@ -1,4 +1,3 @@
-
 const palavras = [
   "abaco",
   "abafa",
@@ -211,17 +210,18 @@ const palavras = [
   "virar",
   "vista",
   "viver",
-  "volta"
+  "volta",
 ];
 let posicao = 0;
 let palavra = "";
 let palavraCorreta = "";
 let tentativa = 0;
-function buscarPalavra(){
-  const indice = Math.floor(Math.random() * palavras.length)
-  palavraCorreta = palavras[indice]
+function buscarPalavra() {
+  const indice = Math.floor(Math.random() * palavras.length);
+  palavraCorreta = palavras[indice];
+  palavraCorreta .toUpperCase()
 }
-buscarPalavra()
+buscarPalavra();
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Backspace" && palavra.length > 0) {
@@ -231,7 +231,7 @@ document.addEventListener("keydown", (event) => {
     palavra = palavra.slice(0, palavra.length - 1);
     tecla.textContent = "";
   }
-  if (event.key.length === 1 && posicao < 35) {
+  if (/^[a-z]$/i.test(event.key) && posicao < 35 && palavra.length < 5) {
     const letras = document.querySelectorAll(".letra");
     const tecla = letras[posicao];
     tecla.textContent = event.key;
@@ -283,7 +283,6 @@ document.addEventListener("keydown", (event) => {
         }
       }, indiceLetra * 400);
     }
-
     palavra = "";
   }
 });
@@ -350,7 +349,7 @@ function processarEntrada(tecla) {
 
   // 3. Tratar a digitação de letras (máximo de 35 espaços e apenas 5 por linha/palavra)
   if (tecla.length === 1 && palavra.length < 5 && posicao < 35) {
-    const letraFormatada = tecla.toLowerCase();
+    const letraFormatada = tecla.toUpperCase();
 
     // Filtra para garantir que apenas letras sejam digitadas
     if (/^[a-z]$/i.test(letraFormatada)) {

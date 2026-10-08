@@ -42,9 +42,11 @@ body {
   border-radius: 10px;
   background-color: transparent;
   color: white;
-  font-size: 28px;
+  font-size: 24px;
   cursor: pointer;
   transition: 0.2s ease;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 .letra:hover {
   border-color: white;
@@ -57,7 +59,7 @@ body {
   color: white;
   border-color: #56544f;
 }
-@keyframes acertou  {
+@keyframes acertou {
   0% {
     transform: scale(1);
   }
@@ -69,13 +71,13 @@ body {
   }
 }
 
-.letra.errou{
+.letra.errou {
   animation: errou 1s ease;
-  background-color: rgb(248, 38, 38);
+  background-color: rgb(56, 56, 54);
   color: white;
   border-color: #56544f;
 }
-@keyframes errou  {
+@keyframes errou {
   0% {
     transform: scale(1);
   }
@@ -87,13 +89,13 @@ body {
   }
 }
 
-.letra.amarelo{
+.letra.amarelo {
   animation: amarelo 1s ease;
-  background-color: rgb(255, 242, 0);
+  background-color: rgb(189, 181, 22);
   color: white;
   border-color: #56544f;
 }
-@keyframes amarelo  {
+@keyframes amarelo {
   0% {
     transform: scale(1);
   }
@@ -106,59 +108,58 @@ body {
 }
 
 .teclado-container {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      width: 100%;
-      max-width: 500px;
-      padding: 10px;
-    }
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 500px;
+  padding: 10px;
+}
 
-    /* Linhas de teclas */
-    .linha-teclado {
-      display: flex;
-      justify-content: center;
-      gap: 6px;
-      width: 100%;
-    }
+/* Linhas de teclas */
+.linha-teclado {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+}
 
-    /* Todas as teclas utilizam a mesma classe principal: .tecla-teclado */
-    .tecla-teclado {
-      background-color: #2a2724; /* Cor escura das teclas */
-      color: #ffffff;            /* Texto branco como no título da imagem */
-      border: 1px solid #3f3b37; /* Borda sutil idêntica à da grade */
-      border-radius: 6px;        /* Bordas arredondadas */
-      height: 55px;
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.1rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      cursor: pointer;
-      user-select: none;
-      transition: background-color 0.15s ease, transform 0.05s ease;
-      
-    }
+/* Todas as teclas utilizam a mesma classe principal: .tecla-teclado */
+.tecla-teclado {
+  background-color: #2a2724; /* Cor escura das teclas */
+  color: #ffffff; /* Texto branco como no título da imagem */
+  border: 1px solid #3f3b37; /* Borda sutil idêntica à da grade */
+  border-radius: 6px; /* Bordas arredondadas */
+  height: 55px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.15s ease, transform 0.05s ease;
+}
 
-    /* Efeito ao passar o mouse e ao clicar */
-    .tecla-teclado:hover {
-      background-color: #383430;
-    }
+/* Efeito ao passar o mouse e ao clicar */
+.tecla-teclado:hover {
+  background-color: #383430;
+}
 
-    .tecla-teclado:active {
-      transform: scale(0.96);
-      background-color: #423e39;
-    }
+.tecla-teclado:active {
+  transform: scale(0.96);
+  background-color: #423e39;
+}
 
-    /* Modificador apenas para ajuste de largura de teclas especiais */
-    .tecla-teclado.especial {
-      flex: 1.5;
-      font-size: 0.85rem;
-    }
+/* Modificador apenas para ajuste de largura de teclas especiais */
+.tecla-teclado.especial {
+  flex: 1.5;
+  font-size: 0.85rem;
+}
 
-footer{
+footer {
   width: 100%;
   background-color: black;
   color: white;
